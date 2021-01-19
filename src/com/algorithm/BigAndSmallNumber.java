@@ -24,13 +24,11 @@ public class BigAndSmallNumber {
         String[] str = input.split("");
 
         int n = input.length();
+        boolean visited[] = new boolean[n];
         int arr[] = new int[n];
         int output[] = new int[n];
-        boolean visited[] = new boolean[n];
         for(int i = 0; i<n; i++){
-            int tmp = Integer.valueOf(str[i]);
-            arr[i] = tmp;
-            visited[i] = false;
+            arr[i] = Integer.valueOf(str[i]);
         }
         int t = arrToInt(arr);
 
@@ -47,6 +45,8 @@ public class BigAndSmallNumber {
         br.close();
     }
     
+    // 순서가 있는 조합(순열)
+    // 재귀
     static void perm(int origin, int[] arr, int[] output, boolean[] visited, int depth, int n, int r) {
         if (depth == r) {
                 int tmp = arrToInt(output);
@@ -56,7 +56,6 @@ public class BigAndSmallNumber {
                         isChanged = true;
                     }
                 }
-                //print(output, r);
                 return;
         }
 
