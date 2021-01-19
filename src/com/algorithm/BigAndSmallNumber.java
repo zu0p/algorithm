@@ -60,7 +60,7 @@ public class BigAndSmallNumber {
         }
 
         for (int i=0; i<n; i++) {
-            if (visited[i] != true) {
+            if (!visited[i]) {
                 visited[i] = true;
                 output[depth] = arr[i];
                 perm(origin, arr, output, visited, depth + 1, n, r);
