@@ -8,7 +8,7 @@ import java.util.Queue;
 import java.util.Vector;
 
 // 리프 노드의 개수만 구하면 됨!!
-public class BOJ_17471 {
+public class BOJ_17073 {
     static int n,w;
     static Vector<Integer>[] vector = new Vector[500001];
     static int visited[] = new int[500001];
