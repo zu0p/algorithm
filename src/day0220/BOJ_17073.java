@@ -35,6 +35,7 @@ public class BOJ_17073 {
 
         int cnt = 0;
         Queue<Integer> q = new LinkedList<>();
+
         visited[0] = 1;
         q.offer(0);
         while(!q.isEmpty()){
