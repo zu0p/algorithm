@@ -1,4 +1,4 @@
-package day0224;
+package day0227;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,7 +21,7 @@ public class BOJ_2470 {
         }
 
         Arrays.sort(input);
-        
+
         int left = 0;
         int right = input.length-1;
         long min = Long.MAX_VALUE;
