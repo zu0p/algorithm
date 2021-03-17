@@ -1,3 +1,5 @@
+package day0316;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -57,11 +59,9 @@ public class BOJ_20056 {
                 cnt[i][j] = new ArrayList<>();
             }
         }
-        ArrayList<Ball> newList = new ArrayList<>();
+
         while(!q.isEmpty()){
             Ball cur = q.poll();
-//            int nr = (cur.r + dx[cur.d]*cur.s + N) % N;
-//            int nc = (cur.c + dy[cur.d]*cur.s + N) % N;
             int nr = cur.r + dx[cur.d]*cur.s  % N;
             int nc = cur.c + dy[cur.d]*cur.s  % N;
             if(nr>N) nr %= N;
@@ -69,19 +69,17 @@ public class BOJ_20056 {
             if(nc>N) nc %= N;
             else if(nc<1) nc = N - (Math.abs(nc)%N);
 
-            newList.add(new Ball(nr,nc,cur.m,cur.s,cur.d));
             cnt[nr][nc].add(new Ball(nr,nc,cur.m,cur.s,cur.d));
         }
 
         for(int i = 0; i<=N; i++){
             for(int j = 0; j<=N; j++){
-                if(cnt[i][j].size() == 0) continue;
 
-                else if(cnt[i][j].size() == 1){
+                if(cnt[i][j].size() == 1){
                     // 안겹칠 때
                     q.offer(cnt[i][j].get(0));
                 }
-
+                else if(cnt[i][j].size()< 2) continue;
                 else if(cnt[i][j].size()>=2){
                     // 2개 이상 파이어볼
                     int sumS = 0, sumM = 0, cnts = 0;
@@ -94,12 +92,14 @@ public class BOJ_20056 {
                         if(cur.d%2==0)  even++;
                         else odd++;
                     }
-                    // 4개 추가
-                    for(int k=0; k<4; k++){
-                        int add;
-                        if(odd==cnts || even==cnts) add = k*2;
-                        else add = k*2+1;
-                        q.offer(new Ball(i,j,sumM / 5, sumS / cnts, add));
+                    if(sumM/5 > 0) {
+                        // 4개 추가
+                        for (int k = 0; k < 4; k++) {
+                            int add;
+                            if (odd == cnts || even == cnts) add = k * 2;
+                            else add = k * 2 + 1;
+                            q.offer(new Ball(i, j, sumM / 5, sumS / cnts, add));
+                        }
                     }
                 }
             }
